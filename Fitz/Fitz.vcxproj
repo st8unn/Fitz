@@ -65,10 +65,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="cCell.h" />
+    <ClInclude Include="ricSolver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cCell.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ricSolver.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\readme.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

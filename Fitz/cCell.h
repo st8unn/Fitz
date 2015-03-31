@@ -2,50 +2,55 @@
 #define __cCell_H
 #include<conio.h>
 #include <iostream>
-#include"TEff.h"
 using namespace std;
-const int NAMESIZE = 15;
+//const int NAMESIZE = 15;
 
-class TCell{
+class cCell{
+	//€ хочу, чтобы сюда записывалась частота, когда она будет вычисленна
+	bool vActivated=false;
+	double koefW;
+	//эпсилон
+	double koefE;
+	//смещение точки
+	double koefA;
+
 public:
-	char vName[NAMESIZE];
-	int vCount;
-
-	TCell(){};
-
-	TCell(char *str){
-		strncpy_s(vName, str, NAMESIZE);
-		vName[NAMESIZE - 1] = '\0';
-		vCount = 1;
-	}
-
-	TCell(string str){
-		strncpy_s(vName, str.c_str(), NAMESIZE);
-		vName[NAMESIZE - 1] = '\0';
-		vCount = 1;
-	}
-
-	int Incr(){
-		return vCount++;
+	//состо€ние
+	double x=0;
+	double y=0;
+	//коэфиициент св€зи
+	double koefD;
+	double vState;
+public:	cCell(){};
+public:	cCell(double A, double E, double D)
+	{
+		koefA = A;
+		koefE = E;
+		koefD = D;
+		vActivated = true;
 	};
-
-	//возвращает 1, если ƒј
-	int operator == (const TCell &temp){
-		return !strcmp(temp.vName, vName);
-	}
-
-	TCell& operator = (const TCell &temp){
-		if (this == &temp)
-			return *this;
-		strncpy_s(vName, temp.vName, NAMESIZE);
-		vCount = temp.vCount;
-		return *this;
-	}
-
-	//возвращает разницу
-	int Compare(const TCell &value2){
-		return strcmp(vName, value2.vName);
-	}
+	//задаЄт три значени€ звена, если оно уже не было активно
+public: void vActivate(double A, double E, double D);
+	//выдаЄт частоту звена
+public: double GetW();
+	//возвращает частоту звена 
+public: void PutW(double W);
+	//возвращение производной по x
+public:	double GetXdot(double forc);
+	//возвращение производной по y
+public:	double GetYdot();
+	//возвращение значени€ ’.
+public:	double GetX();
+	//возвращение значени€ Y.
+public:	double GetY();
+	//прирост по X.
+public:	double PutX(double inc);
+	//прирост по Y.
+public:	double PutY(double inc);
+	//возвращение производной по x
+public:	double fGetXdot(double x,double y, double forc);
+	//возвращение производной по y
+public:	double fGetYdot(double x);
 
 };
 #endif;
